@@ -1,5 +1,5 @@
 //creacion del array
-let amigos = [];
+let nombres= [];
 
 function agregarAmigo() {
     //captura el valor del input
@@ -10,11 +10,22 @@ function agregarAmigo() {
         return false;
     }
     //Agrega el valor al array
-    amigos.push(nombreAmigo);
+    nombres.push(nombreAmigo);
 
     //limpia el valor de entrada
     document.getElementById('amigo').value = '';
-
-    //muestra los valores del array
-    let listaAmigos = document.getElementById('listaAmigos');
+    //ejecuta funcion actualizar amigos
+    actualizarAmigos()
 }
+function actualizarAmigos() {
+    let lista = document.getElementById('listaAmigos')
+    lista.innerHTML = '';
+
+    for (let i = 0; i < nombres.length; i++) {
+        let li = document.createElement('li');
+        li.textContent = nombres[i];
+        lista.appendChild(li);
+    }
+}
+function sortearAmigos()
+ 
