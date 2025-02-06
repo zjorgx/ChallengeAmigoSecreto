@@ -1,21 +1,24 @@
 //creacion del array
-let nombres= [];
+let nombres = [];
 
 function agregarAmigo() {
-    //captura el valor del input
+    
     let nombreAmigo = document.getElementById('amigo').value;
-    //Valida que el input no este vacio
+    
     if (nombreAmigo == ''){
         alert('Debe de ingresar un nombre');
-        return false;
+        return;
     }
-    //Agrega el valor al array
+    if (nombres.includes(nombreAmigo)) {
+        alert('El nombre ya fue ingresado');
+        return;
+    }
+    
     nombres.push(nombreAmigo);
 
-    //limpia el valor de entrada
+    
     document.getElementById('amigo').value = '';
-    //ejecuta funcion actualizar amigos
-    actualizarAmigos()
+    actualizarAmigos();
 }
 function actualizarAmigos() {
     let lista = document.getElementById('listaAmigos')
@@ -27,5 +30,25 @@ function actualizarAmigos() {
         lista.appendChild(li);
     }
 }
-function sortearAmigos()
+function sortearAmigo() {
+    if (nombres.length <= 1) {
+        alert('Ingresa como minimo el nombre de dos amigos para poder iniciar con el sorteo');
+        return;
+    }
+    let amigoSorteado = nombres[Math.floor(Math.random()* nombres.length)];
+    let resultado = document.getElementById('resultado');
+    resultado.innerHTML = `Tu amigo secreto es: ${amigoSorteado}`;
+}
+
+function reiniciarSorteo(){
+    nombres = [];
+    actualizarAmigos();
+
+    let resultado = document.getElementById('resultado');
+    resultado.innerHTML = '';
+
+    let lista = document.getElementById('listaAmigos')
+    lista.innerHTML = '';
+}
+
  
